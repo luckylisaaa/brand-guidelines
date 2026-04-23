@@ -3,24 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ICS 品牌視覺規範書｜Inspire · Create · Shine</title>
+<title>ICS 品牌視覺規範書 V3｜Inspire · Create · Shine</title>
+
+<!-- PWA 設定 -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#A51820">
+<meta name="description" content="ICS 品牌視覺規範書｜Inspire · Create · Shine · 所有視覺規則一頁搞定">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ICS Brand">
+<link rel="apple-touch-icon" href="icon-ics-master-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-ics-master-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-ics-master-192.png">
+
+<!-- OG for sharing -->
+<meta property="og:title" content="ICS 品牌視覺規範書">
+<meta property="og:description" content="Inspire · Create · Shine · 品牌視覺規則一頁搞定">
+<meta property="og:image" content="icon-ics-master-512.png">
+<meta property="og:type" content="website">
+
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
+  /* 跟 handbook 完全對齊的色票 */
   --primary: #A51820;
   --primary-deep: #7A1018;
   --primary-bright: #C02030;
+
   --bg: #FDFBF8;
   --bg-card: #F4F1EC;
   --bg-accent: #FAE8EA;
   --bg-hero: #FDF3F4;
+
   --text: #2A1A1C;
   --text-2: #7A5A5E;
   --text-3: #B09498;
+
   --line: #E8E3DA;
   --gold: #D4A574;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
@@ -30,14 +52,77 @@ body {
 .serif { font-family: "Noto Serif TC", serif; }
 .mono { font-family: "JetBrains Mono", monospace; font-size: 13px; }
 
+/* Link styles - CLICKABLE! */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--bg-accent);
+  transition: all 0.2s;
+}
+a:hover {
+  color: var(--primary-deep);
+  border-bottom-color: var(--primary);
+  background: var(--bg-hero);
+}
+
 .wrap { max-width: 1100px; margin: 0 auto; padding: 48px 28px; }
 
+/* Sticky nav */
+.nav-sticky {
+  position: sticky;
+  top: 0;
+  background: rgba(253, 251, 248, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 28px;
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.nav-btn {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text-2);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  font-family: "Noto Sans TC", sans-serif;
+  text-decoration: none;
+  display: inline-block;
+}
+.nav-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* Hero */
 .hero {
   text-align: center;
   padding: 80px 24px;
   background: linear-gradient(135deg, var(--bg-hero), var(--bg));
   border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
 }
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -30%; right: -10%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(165, 24, 32, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 1; }
 .hero-badge {
   display: inline-block;
   background: var(--primary);
@@ -65,28 +150,42 @@ body {
 }
 .hero .sub { color: var(--text-2); font-size: 16px; max-width: 680px; margin: 16px auto 0; }
 
+/* Section */
 h2.section-title {
   font-family: "Noto Serif TC", serif;
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 900;
-  margin: 56px 0 16px;
-  padding-left: 16px;
+  margin: 64px 0 12px;
+  padding-left: 20px;
   border-left: 4px solid var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-.sub-desc { color: var(--text-2); font-size: 14px; margin-bottom: 24px; padding-left: 20px; }
+h2.section-title .num {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--text-3);
+  font-size: 18px;
+  font-weight: 400;
+}
+.sub-desc { color: var(--text-2); font-size: 14px; margin-bottom: 28px; padding-left: 24px; line-height: 1.8; }
 
+/* Swatches */
 .swatches {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 }
 .swatch {
   background: var(--bg-card);
   border: 1px solid var(--line);
   border-radius: 4px;
   overflow: hidden;
+  transition: transform 0.2s;
+  cursor: pointer;
 }
+.swatch:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(165, 24, 32, 0.1); }
 .swatch .color-block {
   height: 120px;
   display: flex;
@@ -95,19 +194,25 @@ h2.section-title {
   color: #fff;
   font-family: "Noto Serif TC", serif;
   font-weight: 700;
+  position: relative;
 }
-.swatch .meta {
-  padding: 14px 16px;
-  font-size: 13px;
+.swatch .color-block .click-copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 3px 8px;
+  border-radius: 2px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  backdrop-filter: blur(4px);
 }
-.swatch .name {
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-.swatch .code { font-family: "JetBrains Mono", monospace; color: var(--primary); font-size: 12px; }
-.swatch .usage { color: var(--text-2); font-size: 12px; margin-top: 6px; line-height: 1.5; }
+.swatch .meta { padding: 14px 16px; font-size: 13px; }
+.swatch .name { font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.swatch .code { font-family: "JetBrains Mono", monospace; color: var(--primary); font-size: 12px; font-weight: 700; }
+.swatch .usage { color: var(--text-2); font-size: 12px; margin-top: 6px; line-height: 1.6; }
 
+/* Font demo */
 .font-demo {
   background: var(--bg-card);
   padding: 32px 28px;
@@ -122,16 +227,12 @@ h2.section-title {
   margin-bottom: 12px;
   font-weight: 700;
 }
-.font-demo .big-sample {
-  font-size: 36px;
-  font-weight: 900;
-  margin-bottom: 8px;
-  color: var(--text);
-}
+.font-demo .big-sample { font-size: 36px; font-weight: 900; margin-bottom: 8px; color: var(--text); }
 .font-demo .medium-sample { font-size: 18px; color: var(--text); margin-bottom: 4px; }
 .font-demo .small-sample { font-size: 13px; color: var(--text-2); }
-.font-demo .info { color: var(--text-2); font-size: 12px; margin-top: 12px; }
+.font-demo .info { color: var(--text-2); font-size: 12px; margin-top: 12px; font-family: "JetBrains Mono", monospace; }
 
+/* Icon grid */
 .icon-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -143,31 +244,39 @@ h2.section-title {
   border-radius: 4px;
   padding: 24px;
   text-align: center;
-  transition: transform 0.2s;
+  transition: all 0.2s;
 }
-.icon-card:hover { transform: translateY(-4px); border-color: var(--primary); }
+.icon-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: 0 12px 28px rgba(165, 24, 32, 0.1);
+}
 .icon-card img { width: 100px; height: 100px; border-radius: 22px; box-shadow: 0 8px 20px rgba(165, 24, 32, 0.15); }
 .icon-card .name { font-family: "Noto Serif TC", serif; font-weight: 700; color: var(--text); margin-top: 16px; font-size: 16px; }
 .icon-card .url { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--text-3); margin-top: 6px; }
+.icon-card a { border-bottom: none; display: inline-block; background: var(--bg-hero); color: var(--primary); padding: 4px 10px; border-radius: 2px; font-size: 11px; margin-top: 8px; }
 
+/* Rule list */
 .rule-list {
   background: var(--bg-card);
-  padding: 20px 28px;
+  padding: 24px 28px;
   border-radius: 4px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  border: 1px solid var(--line);
 }
 .rule-list h3 {
   font-family: "Noto Serif TC", serif;
-  font-size: 17px;
+  font-size: 18px;
   color: var(--primary);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .rule-list ul { list-style: none; padding: 0; }
 .rule-list li {
-  padding: 4px 0 4px 20px;
+  padding: 6px 0 6px 22px;
   position: relative;
   font-size: 14px;
   color: var(--text);
+  line-height: 1.8;
 }
 .rule-list li::before {
   content: "✦";
@@ -177,7 +286,16 @@ h2.section-title {
 }
 .rule-list li.bad::before { content: "✗"; color: var(--primary-bright); }
 .rule-list li.good::before { content: "✓"; color: #4A7C59; }
+.rule-list li code {
+  font-family: "JetBrains Mono", monospace;
+  background: var(--bg);
+  padding: 1px 6px;
+  border-radius: 2px;
+  font-size: 12px;
+  color: var(--primary-deep);
+}
 
+/* URL table */
 .url-table {
   background: var(--bg-card);
   border-radius: 4px;
@@ -186,18 +304,153 @@ h2.section-title {
   border: 1px solid var(--line);
 }
 .url-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.url-table th, .url-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--line); }
-.url-table th { background: var(--primary); color: #fff; font-weight: 700; font-size: 13px; letter-spacing: 1px; }
+.url-table th, .url-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.url-table th { background: var(--primary); color: #fff; font-weight: 700; font-size: 13px; letter-spacing: 1.5px; }
 .url-table tr:last-child td { border-bottom: none; }
 .url-table code {
   font-family: "JetBrains Mono", monospace;
   background: var(--bg);
-  padding: 2px 8px;
+  padding: 3px 8px;
   border-radius: 2px;
   font-size: 12px;
-  color: var(--primary);
+}
+.url-table a { font-weight: 700; }
+
+/* Two col layout */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+@media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+
+/* Tagline showcase */
+.tagline-showcase {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+  color: #fff;
+  padding: 40px 32px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.tagline-showcase::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+.tagline-showcase .label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  opacity: 0.7;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.tagline-showcase .main {
+  font-family: "Noto Serif TC", serif;
+  font-size: clamp(24px, 3.5vw, 32px);
+  font-weight: 900;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.tagline-showcase .italic {
+  font-style: italic;
+  font-weight: 500;
+}
+.tagline-showcase .sub {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-top: 8px;
 }
 
+/* Quick nav section */
+.quick-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.quick-nav a {
+  background: var(--bg-card);
+  padding: 14px 16px;
+  border-radius: 4px;
+  color: var(--text);
+  font-size: 13px;
+  border: 1px solid var(--line);
+  border-bottom-color: var(--line);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.quick-nav a:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.quick-nav a .num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+/* Practical tip */
+.tip-box {
+  background: var(--bg-accent);
+  border-left: 3px solid var(--primary);
+  padding: 16px 20px;
+  border-radius: 0 4px 4px 0;
+  margin: 12px 0;
+  font-size: 14px;
+  color: var(--primary-deep);
+}
+.tip-box strong { color: var(--primary); }
+
+/* Examples */
+.example-box {
+  background: var(--bg);
+  border: 1px dashed var(--line);
+  padding: 20px;
+  border-radius: 4px;
+  margin: 12px 0;
+}
+.example-box .good-bad { display: flex; gap: 16px; flex-wrap: wrap; }
+.example-box .gb-item { flex: 1; min-width: 240px; }
+.example-box .gb-item .title { font-weight: 700; margin-bottom: 8px; font-size: 13px; }
+.example-box .gb-item.ok .title { color: #4A7C59; }
+.example-box .gb-item.ng .title { color: var(--primary-bright); }
+.example-box .gb-item .desc {
+  background: var(--bg-card);
+  padding: 10px 14px;
+  border-radius: 3px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Version log */
+.version-log {
+  background: var(--bg-card);
+  padding: 20px 24px;
+  border-radius: 4px;
+  border-left: 4px solid var(--text-3);
+  margin-bottom: 12px;
+}
+.version-log h4 {
+  font-family: "Noto Serif TC", serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+.version-log ul { list-style: none; padding: 0; font-size: 13px; }
+.version-log li { padding: 3px 0 3px 18px; position: relative; color: var(--text-2); }
+.version-log li::before { content: "·"; position: absolute; left: 6px; color: var(--primary); font-weight: 700; }
+
+/* Footer */
 .footer {
   text-align: center;
   padding: 64px 24px 32px;
@@ -205,6 +458,7 @@ h2.section-title {
   font-size: 12px;
   border-top: 1px solid var(--line);
   margin-top: 80px;
+  background: var(--bg-card);
 }
 .footer .brand {
   font-family: "Noto Serif TC", serif;
@@ -214,157 +468,484 @@ h2.section-title {
   letter-spacing: 3px;
   margin-bottom: 8px;
 }
+.footer a { color: var(--primary); }
+
+/* Copy button */
+.copy-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 2px;
+  font-size: 11px;
+  cursor: pointer;
+  font-family: "Noto Sans TC", sans-serif;
+  transition: background 0.2s;
+}
+.copy-btn:hover { background: var(--primary-bright); }
+.copy-btn.copied { background: #4A7C59; }
+
+/* V3 新增: 右側固定目錄 */
+.toc-fixed {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(253, 251, 248, 0.96);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 180px;
+  box-shadow: 0 8px 24px rgba(42, 26, 28, 0.08);
+  z-index: 9;
+  font-size: 12px;
+}
+@media (max-width: 1180px) { .toc-fixed { display: none; } }
+.toc-fixed .toc-title {
+  font-family: "Noto Serif TC", serif;
+  color: var(--primary);
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+.toc-fixed ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: toc;
+}
+.toc-fixed li {
+  counter-increment: toc;
+  padding: 4px 0;
+}
+.toc-fixed a {
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  transition: all 0.15s;
+  border-bottom: none;
+}
+.toc-fixed a:hover,
+.toc-fixed a.active {
+  color: var(--primary);
+  background: var(--bg-hero);
+}
+.toc-fixed a::before {
+  content: counter(toc, decimal-leading-zero);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--text-3);
+  font-weight: 700;
+}
+.toc-fixed a.active::before { color: var(--primary); }
+
+/* V3 新增: 回頂按鈕 */
+.back-to-top {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  color: var(--primary);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9997;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: all 0.3s;
+}
+.back-to-top.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* V3 新增: 章節結尾「回目錄」連結 */
+.back-to-toc {
+  text-align: right;
+  margin: 16px 0 24px;
+  font-size: 12px;
+}
+.back-to-toc a {
+  color: var(--text-3);
+  border-bottom: 1px dashed var(--text-3);
+  padding: 2px 0;
+}
+.back-to-toc a:hover {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
 </style>
 </head>
 <body>
+<!-- V3: 右側固定目錄 -->
+<aside class="toc-fixed" id="tocFixed">
+  <div class="toc-title">頁面目錄</div>
+  <ol>
+    <li><a href="#section-1">品牌色系</a></li>
+    <li><a href="#section-2">字體系統</a></li>
+    <li><a href="#section-3">Icon 系列</a></li>
+    <li><a href="#section-4">標語系統</a></li>
+    <li><a href="#section-5">網站資產</a></li>
+    <li><a href="#section-6">使用場景</a></li>
+    <li><a href="#section-7">應用範例</a></li>
+    <li><a href="#section-8">雙品牌說明</a></li>
+    <li><a href="#section-9">版本紀錄</a></li>
+  </ol>
+</aside>
 
+<!-- V3: 回頂按鈕 -->
+<button class="back-to-top" id="backToTop" aria-label="回頂部">↑</button>
+
+
+<!-- Hero -->
 <div class="hero">
-  <div class="hero-badge">BRAND GUIDELINES · V1.0</div>
-  <h1 class="serif">ICS 品牌視覺規範書</h1>
-  <div class="tagline">Inspire. Create. Shine.</div>
-  <div class="sub">給自己、給外包設計師、給合作夥伴。一頁搞定所有視覺規則。<br>只要對外文件涉及 ICS 品牌，都請對齊這份規範。</div>
+  <div class="hero-inner">
+    <div class="hero-badge">BRAND GUIDELINES · V3.0</div>
+    <h1 class="serif">ICS 品牌視覺規範書</h1>
+    <div class="tagline">Inspire. Create. Shine.</div>
+    <div class="sub">給自己 · 給外包設計師 · 給合作夥伴<br>一頁搞定所有視覺與品牌操作規則</div>
+  </div>
 </div>
+
+<!-- Sticky Nav -->
+<nav class="nav-sticky">
+  <div class="nav-inner">
+    <a href="#section-1" class="nav-btn">① 品牌色系</a>
+    <a href="#section-2" class="nav-btn">② 字體系統</a>
+    <a href="#section-3" class="nav-btn">③ Icon 系列</a>
+    <a href="#section-4" class="nav-btn">④ 標語</a>
+    <a href="#section-5" class="nav-btn">⑤ 網站資產</a>
+    <a href="#section-6" class="nav-btn">⑥ 使用場景</a>
+    <a href="#section-7" class="nav-btn">⑦ 應用範例</a>
+    <a href="#section-8" class="nav-btn">⑧ 雙品牌說明</a>
+    <a href="#section-9" class="nav-btn">⑨ 版本紀錄</a>
+  </div>
+</nav>
 
 <div class="wrap">
 
-<h2 class="section-title serif">① 品牌色系</h2>
-<p class="sub-desc">主色是深玫瑰紅，視覺主基調。暖白為底，微咖黑為字。紅色只用在最重要的地方，其餘大量留白。</p>
+<!-- Quick nav -->
+<div class="quick-nav" style="margin-top:48px">
+  <a href="#section-1"><span class="num">01</span>品牌色系</a>
+  <a href="#section-2"><span class="num">02</span>字體系統</a>
+  <a href="#section-3"><span class="num">03</span>Icon 系列</a>
+  <a href="#section-4"><span class="num">04</span>標語系統</a>
+  <a href="#section-5"><span class="num">05</span>網站資產</a>
+  <a href="#section-6"><span class="num">06</span>使用場景</a>
+</div>
+
+<!-- ① 品牌色系 -->
+<h2 class="section-title" id="section-1"><span class="num">01</span>品牌色系</h2>
+<p class="sub-desc">色票與 handbook「品牌視覺」分頁完全對齊。主色是深玫瑰紅，暖白為底，微咖黑為字。點任一色塊可複製色碼。</p>
 
 <div class="swatches">
-  <div class="swatch">
-    <div class="color-block" style="background:#A51820">主色 Primary</div>
+  <div class="swatch" onclick="copyColor('#A51820', this)">
+    <div class="color-block" style="background:#A51820">
+      <span class="click-copy">點擊複製</span>
+      <span>主色 Primary</span>
+    </div>
     <div class="meta">
       <div class="name">Deep Rose Red</div>
       <div class="code mono">#A51820</div>
-      <div class="usage">Logo · 標題 · 主按鈕 · 重點強調</div>
+      <div class="usage">Logo · 標題 · 主按鈕 · 核心品牌色</div>
     </div>
   </div>
-  <div class="swatch">
-    <div class="color-block" style="background:#7A1018">深紅 Deep</div>
+  <div class="swatch" onclick="copyColor('#7A1018', this)">
+    <div class="color-block" style="background:#7A1018">
+      <span class="click-copy">點擊複製</span>
+      <span>深紅 Deep</span>
+    </div>
     <div class="meta">
       <div class="name">Dark Red</div>
       <div class="code mono">#7A1018</div>
-      <div class="usage">漸層深色 · Hover 狀態</div>
+      <div class="usage">漸層深色 · Hover 狀態 · Icon 底色</div>
     </div>
   </div>
-  <div class="swatch">
-    <div class="color-block" style="background:#C02030">亮紅 Bright</div>
+  <div class="swatch" onclick="copyColor('#C02030', this)">
+    <div class="color-block" style="background:#C02030">
+      <span class="click-copy">點擊複製</span>
+      <span>亮紅 Bright</span>
+    </div>
     <div class="meta">
       <div class="name">Bright Red</div>
       <div class="code mono">#C02030</div>
-      <div class="usage">CTA · 重點標示</div>
+      <div class="usage">CTA · 重點強調 · 警示</div>
     </div>
   </div>
-  <div class="swatch">
-    <div class="color-block" style="background:#FDFBF8;color:#2A1A1C;border-top:1px solid var(--line)">暖白底</div>
+  <div class="swatch" onclick="copyColor('#FDFBF8', this)">
+    <div class="color-block" style="background:#FDFBF8;color:#2A1A1C;border-top:1px solid var(--line)">
+      <span class="click-copy" style="background:rgba(0,0,0,0.05)">點擊複製</span>
+      <span>暖白底</span>
+    </div>
     <div class="meta">
       <div class="name">Warm Snow White</div>
       <div class="code mono">#FDFBF8</div>
       <div class="usage">頁面主背景 · 內容頁底色</div>
     </div>
   </div>
-  <div class="swatch">
-    <div class="color-block" style="background:#FAE8EA;color:#7A1018">粉色重點</div>
+  <div class="swatch" onclick="copyColor('#F4F1EC', this)">
+    <div class="color-block" style="background:#F4F1EC;color:#2A1A1C;border-top:1px solid var(--line)">
+      <span class="click-copy" style="background:rgba(0,0,0,0.05)">點擊複製</span>
+      <span>次背景</span>
+    </div>
+    <div class="meta">
+      <div class="name">Card Background</div>
+      <div class="code mono">#F4F1EC</div>
+      <div class="usage">卡片底 · 區塊分隔 · 次要資訊底色</div>
+    </div>
+  </div>
+  <div class="swatch" onclick="copyColor('#FAE8EA', this)">
+    <div class="color-block" style="background:#FAE8EA;color:#7A1018">
+      <span class="click-copy" style="background:rgba(0,0,0,0.05)">點擊複製</span>
+      <span>粉色重點</span>
+    </div>
     <div class="meta">
       <div class="name">Accent Pink</div>
       <div class="code mono">#FAE8EA</div>
-      <div class="usage">AI 摘要 · 重點標示區</div>
+      <div class="usage">AI 摘要 · 重點標示區 · 提示卡</div>
     </div>
   </div>
-  <div class="swatch">
-    <div class="color-block" style="background:#2A1A1C">微咖黑 Text</div>
+  <div class="swatch" onclick="copyColor('#FDF3F4', this)">
+    <div class="color-block" style="background:#FDF3F4;color:#A51820">
+      <span class="click-copy" style="background:rgba(0,0,0,0.05)">點擊複製</span>
+      <span>大區塊淡粉</span>
+    </div>
+    <div class="meta">
+      <div class="name">Hero Soft Pink</div>
+      <div class="code mono">#FDF3F4</div>
+      <div class="usage">Hero 大圖背景 · 封面淡色區</div>
+    </div>
+  </div>
+  <div class="swatch" onclick="copyColor('#2A1A1C', this)">
+    <div class="color-block" style="background:#2A1A1C">
+      <span class="click-copy">點擊複製</span>
+      <span>微咖黑 Text</span>
+    </div>
     <div class="meta">
       <div class="name">Warm Brown Black</div>
       <div class="code mono">#2A1A1C</div>
       <div class="usage">所有內文 · 正文 · 說明文字</div>
     </div>
   </div>
+  <div class="swatch" onclick="copyColor('#7A5A5E', this)">
+    <div class="color-block" style="background:#7A5A5E">
+      <span class="click-copy">點擊複製</span>
+      <span>輔助文字</span>
+    </div>
+    <div class="meta">
+      <div class="name">Muted Text</div>
+      <div class="code mono">#7A5A5E</div>
+      <div class="usage">說明 · 標籤 · 次要資訊</div>
+    </div>
+  </div>
+  <div class="swatch" onclick="copyColor('#B09498', this)">
+    <div class="color-block" style="background:#B09498">
+      <span class="click-copy">點擊複製</span>
+      <span>淡化文字</span>
+    </div>
+    <div class="meta">
+      <div class="name">Light Text</div>
+      <div class="code mono">#B09498</div>
+      <div class="usage">佔位文字 · 時間戳 · 弱化</div>
+    </div>
+  </div>
+  <div class="swatch" onclick="copyColor('#E8E3DA', this)">
+    <div class="color-block" style="background:#E8E3DA;color:#7A5A5E">
+      <span class="click-copy" style="background:rgba(0,0,0,0.05)">點擊複製</span>
+      <span>邊框</span>
+    </div>
+    <div class="meta">
+      <div class="name">Border</div>
+      <div class="code mono">#E8E3DA</div>
+      <div class="usage">卡片邊框 · 分隔線 · 輸入框</div>
+    </div>
+  </div>
+  <div class="swatch" onclick="copyColor('#D4A574', this)">
+    <div class="color-block" style="background:#D4A574">
+      <span class="click-copy">點擊複製</span>
+      <span>金色點綴</span>
+    </div>
+    <div class="meta">
+      <div class="name">Gold Accent</div>
+      <div class="code mono">#D4A574</div>
+      <div class="usage">Icon 金線 · 精品感點綴 · 分隔線</div>
+    </div>
+  </div>
+</div>
+
+<div class="tip-box">
+  <strong>💡 為什麼不用純黑？</strong><br>
+  <code>#2A1A1C</code> 是帶暗紅調的深棕黑，和主色 <code>#A51820</code> 同色調族群。視覺上更溫暖、更一致，整個頁面有一種「微咖帶紅」的質感，這就是 ICS 的獨特氣質。用純黑 <code>#000000</code> 會顯得突兀、冷硬。
 </div>
 
 <div class="rule-list">
-  <h3>色彩使用原則</h3>
+  <h3>✦ 色彩使用原則</h3>
   <ul>
     <li class="good">對外場合（提案、客戶文件、影片字幕）：只用主色系列 + 暖白 + 微咖黑</li>
     <li class="good">紅色只用在「最重要的一個地方」（CTA、核心標題），其餘大量留白</li>
-    <li class="bad">不要大面積使用亮紅（C02030），會過於刺眼</li>
-    <li class="bad">不要用純黑 #000 代替微咖黑，視覺會突兀</li>
-    <li class="bad">不要在印刷品大面積鋪紅色，改用紅線+文字省墨</li>
+    <li class="good">對內場合可用功能色（黃/藍/綠/粉/橙/紫）做分類，但對外不用</li>
+    <li class="bad">不要大面積使用亮紅 <code>#C02030</code>，會過於刺眼</li>
+    <li class="bad">不要用純黑 <code>#000</code> 代替微咖黑，視覺會突兀</li>
+    <li class="bad">不要在印刷品大面積鋪紅色（改用紅線+文字省墨水）</li>
+    <li class="bad">不要同時使用超過 3 個主色系以外的顏色</li>
   </ul>
 </div>
 
 
-<h2 class="section-title serif">② 字體系統</h2>
+<!-- ② 字體系統 -->
+<div class="back-to-toc"><a href="#tocFixed">↑ 回頂部 / 切換章節</a></div>
+<h2 class="section-title" id="section-2"><span class="num">02</span>字體系統</h2>
 <p class="sub-desc">標題用襯線體帶質感，內文用黑體確保易讀。兩款字體都是 Google Fonts 免費可商用。</p>
 
 <div class="font-demo" style="font-family:'Noto Serif TC', serif">
   <div class="label">標題字體 HEADLINE</div>
   <div class="big-sample">Inspire · Create · Shine</div>
   <div class="medium-sample">短影音代理營運 · 讓你的品牌被看見</div>
-  <div class="small-sample">用於：品牌名、大標題、引言、裝飾字</div>
-  <div class="info">Noto Serif TC · 權重 500 / 700 / 900</div>
+  <div class="small-sample">用於：品牌名、大標題、引言、裝飾字、引言句</div>
+  <div class="info">Noto Serif TC · 權重 500 / 700 / 900 · 字距 -0.5px</div>
 </div>
 
 <div class="font-demo">
   <div class="label">內文字體 BODY</div>
   <div class="big-sample" style="font-weight:900">內文就是這個字體</div>
   <div class="medium-sample">清楚、易讀、適合大量文字。這段話就是用 Noto Sans TC。</div>
-  <div class="small-sample">用於：正文、說明、按鈕、標籤</div>
-  <div class="info">Noto Sans TC · 權重 400 / 500 / 700 / 900</div>
+  <div class="small-sample">用於：正文、說明、按鈕、標籤、表格</div>
+  <div class="info">Noto Sans TC · 權重 400 / 500 / 700 / 900 · 行高 1.8</div>
 </div>
 
 <div class="rule-list">
-  <h3>字體使用原則</h3>
+  <h3>✦ 字體載入方式（給工程師/網頁使用）</h3>
+  <ul>
+    <li>在 HTML &lt;head&gt; 內貼上這段：</li>
+  </ul>
+  <pre style="background:var(--text);color:#FDFBF8;padding:14px 16px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px;overflow-x:auto;margin-top:10px;line-height:1.6;">&lt;link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&amp;family=Noto+Sans+TC:wght@400;500;700;900&amp;display=swap" rel="stylesheet"&gt;</pre>
+</div>
+
+<div class="rule-list">
+  <h3>✦ 字體使用原則</h3>
   <ul>
     <li class="good">標題用襯線（Serif）帶精品感</li>
     <li class="good">內文用黑體（Sans）確保手機也好讀</li>
     <li class="good">英文字也用這兩款，中英混排一致</li>
+    <li class="good">印刷品可搭配使用 <em>Playfair Display</em> 英文襯線</li>
     <li class="bad">不要用標楷體、華康系列，缺乏當代感</li>
     <li class="bad">不要用過多字重（建議只用 400 / 700 / 900 三種）</li>
+    <li class="bad">不要用雙系統字體（如明體+楷體）混搭</li>
   </ul>
 </div>
 
 
-<h2 class="section-title serif">③ Icon 系列</h2>
+<!-- ③ Icon 系列 -->
+<div class="back-to-toc"><a href="#tocFixed">↑ 回頂部 / 切換章節</a></div>
+<h2 class="section-title" id="section-3"><span class="num">03</span>Icon 系列</h2>
 <p class="sub-desc">深玫瑰紅底 + 白色襯線字母 + 金線裝飾。主 icon 用 ICS，各工具用首字母延伸。未來新工具照此規則繼續延伸（例：Portal = P，Report = R）。</p>
 
 <div class="icon-grid">
   <div class="icon-card">
-    <img src="icon-ics-master-512.png" alt="ICS Master">
+    <img src="icon-ics-master-512.png" alt="ICS Master" onerror="this.style.display='none'">
     <div class="name">主 Logo</div>
     <div class="url mono">品牌主視覺</div>
+    <div style="color:var(--text-3);font-size:11px;margin-top:6px;">未來公司主頁 / 名片 / 提案書</div>
   </div>
   <div class="icon-card">
-    <img src="icon-matrix-512.png" alt="Matrix">
+    <img src="icon-matrix-512.png" alt="Matrix" onerror="this.style.display='none'">
     <div class="name">Matrix 選題矩陣</div>
     <div class="url mono">/matrix/</div>
+    <a href="https://luckylisaaa.github.io/matrix/" target="_blank">前往網站 →</a>
   </div>
   <div class="icon-card">
-    <img src="icon-handbook-512.png" alt="Handbook">
+    <img src="icon-handbook-512.png" alt="Handbook" onerror="this.style.display='none'">
     <div class="name">Handbook 學習手冊</div>
     <div class="url mono">/handbook/</div>
+    <a href="https://luckylisaaa.github.io/handbook/" target="_blank">前往網站 →</a>
   </div>
   <div class="icon-card">
-    <img src="icon-scripts-512.png" alt="Scripts">
+    <img src="icon-scripts-512.png" alt="Scripts" onerror="this.style.display='none'">
     <div class="name">Scripts 腳本產生器</div>
     <div class="url mono">/script-generator/</div>
+    <a href="https://luckylisaaa.github.io/script-generator/" target="_blank">前往網站 →</a>
   </div>
 </div>
 
 <div class="rule-list" style="margin-top: 20px;">
-  <h3>Icon 使用原則</h3>
+  <h3>✦ Icon 使用原則</h3>
   <ul>
-    <li class="good">底色一律深玫瑰紅漸層（#B51E28 → #7A1018）</li>
-    <li class="good">字母用 Noto Serif TC 襯線體，白色 #FDFBF8</li>
-    <li class="good">加一條金線裝飾（#D4A574）增加質感</li>
+    <li class="good">底色一律深玫瑰紅漸層（<code>#B51E28</code> → <code>#7A1018</code>）</li>
+    <li class="good">字母用 Noto Serif TC 襯線體，白色 <code>#FDFBF8</code></li>
+    <li class="good">加一條金線裝飾（<code>#D4A574</code>）增加質感</li>
     <li class="good">圓角統一 22% 比例（112 / 512）</li>
+    <li class="good">多尺寸備用：32 / 180 / 192 / 512 PNG + SVG</li>
     <li class="bad">不要把底色換成其他顏色</li>
     <li class="bad">不要加卡通插圖、emoji、過多裝飾</li>
+    <li class="bad">不要用在 Astra 個人品牌（Astra 用純線條系列）</li>
   </ul>
 </div>
 
 
-<h2 class="section-title serif">④ 網站資產</h2>
-<p class="sub-desc">所有 ICS 旗下數位資產，使用同一套視覺規範。</p>
+<!-- ④ 標語系統 -->
+<div class="back-to-toc"><a href="#tocFixed">↑ 回頂部 / 切換章節</a></div>
+<h2 class="section-title" id="section-4"><span class="num">04</span>標語系統</h2>
+<p class="sub-desc">三層標語，依場合選用。對外提案優先用主標語，精品感場合用副標語，自介時用一句話定位。</p>
+
+<div class="tagline-showcase">
+  <div class="label">主標語 MAIN TAGLINE</div>
+  <div class="main">Inspire. Create. Shine.</div>
+  <div class="italic">靈感開始於真實，創作屬於你的光芒</div>
+  <div class="sub">用於：所有對外視覺、提案、網站 Hero、名片</div>
+</div>
+
+<div class="tagline-showcase" style="background:linear-gradient(135deg,#7A1018 0%,#2A1A1C 100%);">
+  <div class="label">副標語 BRAND ESSENCE</div>
+  <div class="main italic">Finding beauty. Making it move.</div>
+  <div class="sub">用於：精品感場合、作品集封底、品牌廣告</div>
+</div>
+
+<div class="rule-list">
+  <h3>✦ 一句話定位（對客戶自介用）</h3>
+  <ul>
+    <li style="font-family:'Noto Serif TC',serif;font-size:17px;color:var(--primary);font-weight:700;padding-left:0;">
+      「我們用一雙發現美的眼睛，幫你的品牌找到那個讓人停下來的瞬間。」
+    </li>
+    <li style="color:var(--text-2);margin-top:10px;">適用情境：初次諮詢開場、提案首頁、LinkedIn 簡介</li>
+  </ul>
+</div>
+
+<div class="rule-list">
+  <h3>✦ ICS 三字訣（對應服務流程）</h3>
+  <ul>
+    <li><strong class="serif" style="font-size:18px;color:var(--primary);">I</strong> — <strong>Inspire</strong> — IP 定位 · 靈感方向</li>
+    <li><strong class="serif" style="font-size:18px;color:var(--primary);">C</strong> — <strong>Create</strong> — 內容製作 · 有質感執行</li>
+    <li><strong class="serif" style="font-size:18px;color:var(--primary);">S</strong> — <strong>Shine</strong> — 曝光成效 · 讓品牌發光</li>
+  </ul>
+</div>
+
+
+<!-- ⑤ 網站資產 -->
+<div class="back-to-toc"><a href="#tocFixed">↑ 回頂部 / 切換章節</a></div>
+<h2 class="section-title" id="section-5"><span class="num">05</span>網站資產</h2>
+<p class="sub-desc">所有 ICS 旗下數位資產，使用同一套視覺規範。點擊網址直接前往。</p>
 
 <div class="url-table">
   <table>
@@ -372,63 +953,217 @@ h2.section-title {
       <th>資產</th>
       <th>網址</th>
       <th>用途</th>
+      <th>狀態</th>
     </tr>
     <tr>
-      <td><strong class="serif">Handbook</strong></td>
-      <td><code>luckylisaaa.github.io/handbook/</code></td>
-      <td>代理營運學習手冊</td>
+      <td><strong class="serif">📚 Handbook</strong></td>
+      <td><a href="https://luckylisaaa.github.io/handbook/" target="_blank"><code>luckylisaaa.github.io/handbook/</code></a></td>
+      <td>代理營運學習手冊（26 主題）</td>
+      <td style="color:#4A7C59">✓ 線上</td>
     </tr>
     <tr>
-      <td><strong class="serif">Matrix</strong></td>
-      <td><code>luckylisaaa.github.io/matrix/</code></td>
-      <td>選題作戰矩陣</td>
+      <td><strong class="serif">🎯 Matrix</strong></td>
+      <td><a href="https://luckylisaaa.github.io/matrix/" target="_blank"><code>luckylisaaa.github.io/matrix/</code></a></td>
+      <td>8×14 選題作戰矩陣（112 格）</td>
+      <td style="color:#4A7C59">✓ 線上 · PWA</td>
     </tr>
     <tr>
-      <td><strong class="serif">Scripts</strong></td>
-      <td><code>luckylisaaa.github.io/script-generator/</code></td>
-      <td>腳本產生器</td>
+      <td><strong class="serif">✏️ Scripts</strong></td>
+      <td><a href="https://luckylisaaa.github.io/script-generator/" target="_blank"><code>luckylisaaa.github.io/script-generator/</code></a></td>
+      <td>V3 腳本產生器（13 步驟）</td>
+      <td style="color:#4A7C59">✓ 線上</td>
+    </tr>
+    <tr>
+      <td><strong class="serif">📖 Brand</strong></td>
+      <td><a href="https://luckylisaaa.github.io/brand-guidelines/" target="_blank"><code>luckylisaaa.github.io/brand-guidelines/</code></a></td>
+      <td>本品牌規範書（你正在看）</td>
+      <td style="color:#4A7C59">✓ 線上</td>
+    </tr>
+    <tr>
+      <td><strong class="serif">🏠 Home</strong></td>
+      <td><code style="color:var(--text-3);">luckylisaaa.github.io/</code></td>
+      <td>總入口頁（規劃中）</td>
+      <td style="color:var(--text-3)">規劃中</td>
     </tr>
   </table>
 </div>
 
 
-<h2 class="section-title serif">⑤ 標語系統</h2>
+<!-- ⑥ 使用場景 -->
+<div class="back-to-toc"><a href="#tocFixed">↑ 回頂部 / 切換章節</a></div>
+<h2 class="section-title" id="section-6"><span class="num">06</span>使用場景指南</h2>
+<p class="sub-desc">不同場合用不同的視覺調性。這份表格是品牌一致性的關鍵。</p>
 
-<div class="rule-list">
-  <h3>主標語（對外用）</h3>
+<div class="url-table">
+  <table>
+    <tr>
+      <th>場合</th>
+      <th>主色使用</th>
+      <th>字體</th>
+      <th>語氣</th>
+    </tr>
+    <tr>
+      <td><strong>提案簡報</strong></td>
+      <td>紅色只用標題 + CTA<br>大量留白</td>
+      <td>標題 Serif<br>內文 Sans</td>
+      <td>專業、有系統</td>
+    </tr>
+    <tr>
+      <td><strong>客戶合約 / 報價單</strong></td>
+      <td>僅使用 Logo 紅<br>全文微咖黑</td>
+      <td>全部 Sans</td>
+      <td>嚴謹、清楚</td>
+    </tr>
+    <tr>
+      <td><strong>社群貼文封面</strong></td>
+      <td>紅色可用於背景<br>或大字標題</td>
+      <td>Serif 大字 + Sans 副文</td>
+      <td>有溫度、引人停下</td>
+    </tr>
+    <tr>
+      <td><strong>IG Reels 字幕</strong></td>
+      <td>字幕白 + 關鍵字紅</td>
+      <td>粗體 Sans</td>
+      <td>口語直接</td>
+    </tr>
+    <tr>
+      <td><strong>名片 / 印刷品</strong></td>
+      <td>不鋪紅色，用紅線 + 紅字</td>
+      <td>Serif 名字 + Sans 資訊</td>
+      <td>質感、精品感</td>
+    </tr>
+    <tr>
+      <td><strong>Email 簽名</strong></td>
+      <td>只有名字和職稱用紅</td>
+      <td>Sans</td>
+      <td>簡潔</td>
+    </tr>
+  </table>
+</div>
+
+
+<!-- ⑦ 應用範例 -->
+<div class="back-to-toc"><a href="#tocFixed">↑ 回頂部 / 切換章節</a></div>
+<h2 class="section-title" id="section-7"><span class="num">07</span>應用範例</h2>
+<p class="sub-desc">好的示範 vs 不好的示範，讓外包設計師一看就懂。</p>
+
+<div class="example-box">
+  <h4 style="margin-bottom:14px;color:var(--primary);font-family:'Noto Serif TC',serif;">範例一：提案簡報封面</h4>
+  <div class="good-bad">
+    <div class="gb-item ok">
+      <div class="title">✓ 好的示範</div>
+      <div class="desc">
+        暖白底 <code>#FDFBF8</code> + 左側 Serif 大標題（微咖黑）+ 右下角小 Logo。<br>
+        紅色只出現在「一句標語」上。大量留白。
+      </div>
+    </div>
+    <div class="gb-item ng">
+      <div class="title">✗ 不好的示範</div>
+      <div class="desc">
+        紅色鋪滿整張 + 黃色箭頭 + 閃亮漸層背景 + 標楷體標題。<br>
+        看起來像 90 年代傳單，不像 2026 顧問公司。
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="example-box">
+  <h4 style="margin-bottom:14px;color:var(--primary);font-family:'Noto Serif TC',serif;">範例二：IG 貼文封面</h4>
+  <div class="good-bad">
+    <div class="gb-item ok">
+      <div class="title">✓ 好的示範</div>
+      <div class="desc">
+        Serif 大字主標（3-5 字內）+ Sans 副標 + 品牌 Logo 小字。<br>
+        單純的紅底或暖白底，不加過多裝飾。
+      </div>
+    </div>
+    <div class="gb-item ng">
+      <div class="title">✗ 不好的示範</div>
+      <div class="desc">
+        10 行文字塞滿 + emoji 爆炸 + 表情包 + 紫色粉色漸層。<br>
+        看起來沒有品牌識別度。
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="example-box">
+  <h4 style="margin-bottom:14px;color:var(--primary);font-family:'Noto Serif TC',serif;">範例三：影片字幕</h4>
+  <div class="good-bad">
+    <div class="gb-item ok">
+      <div class="title">✓ 好的示範</div>
+      <div class="desc">
+        白字黑邊 + 關鍵字用 <code>#A51820</code> 紅色放大。<br>
+        字體選用黑體粗字（如 Noto Sans 或類似）。
+      </div>
+    </div>
+    <div class="gb-item ng">
+      <div class="title">✗ 不好的示範</div>
+      <div class="desc">
+        彩虹字 + 閃爍特效 + 5 種字型混用 + 全黃色底。<br>
+        影片專業感瞬間歸零。
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ⑧ 雙品牌說明 -->
+<div class="back-to-toc"><a href="#tocFixed">↑ 回頂部 / 切換章節</a></div>
+<h2 class="section-title" id="section-8"><span class="num">08</span>雙品牌系統說明</h2>
+<p class="sub-desc">ICS 和 Astra 是兩個不同的品牌軌，視覺並行但共享品牌基因。</p>
+
+<div class="two-col">
+  <div class="rule-list" style="border-left:4px solid var(--primary);">
+    <h3>🎯 ICS（商業軌）</h3>
+    <ul>
+      <li><strong>氣質</strong>：專業、有系統、可交付</li>
+      <li><strong>Icon 風格</strong>：實心深紅方塊 + 白字</li>
+      <li><strong>使用場景</strong>：客戶提案、商業服務、合約、收費</li>
+      <li><strong>網站資產</strong>：Matrix, Handbook, Scripts</li>
+      <li><strong>受眾</strong>：客戶、合作夥伴、學員</li>
+    </ul>
+  </div>
+  <div class="rule-list" style="border-left:4px solid var(--text-3);">
+    <h3>🌙 Astra（個人軌）</h3>
+    <ul>
+      <li><strong>氣質</strong>：詩意、真實、深度</li>
+      <li><strong>Icon 風格</strong>：純線條剪影 + 透明底</li>
+      <li><strong>使用場景</strong>：日記、靈感紀錄、創作者內容</li>
+      <li><strong>網站資產</strong>：Astra 宇宙</li>
+      <li><strong>受眾</strong>：粉絲、你自己</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tip-box">
+  <strong>✦ 共同血緣（品牌基因）</strong><br>
+  兩軌都使用 <code>#A51820</code> 深玫瑰紅 + Noto Serif TC 字體。<br>
+  未來可能整合，現階段雙軌並行。這給品牌同時具備「商業專業」和「個人真實」兩種面向的能力。
+</div>
+
+
+<!-- ⑨ 版本紀錄 -->
+<div class="back-to-toc"><a href="#tocFixed">↑ 回頂部 / 切換章節</a></div>
+<h2 class="section-title" id="section-9"><span class="num">09</span>版本紀錄</h2>
+<p class="sub-desc">每次重大更新記錄在這裡。未來外包設計師或合作夥伴看這份，能快速掌握品牌演進。</p>
+
+<div class="version-log">
+  <h4>V3.0 · 2026/04/23</h4>
   <ul>
-    <li><strong class="serif" style="font-size:18px">Inspire. Create. Shine.</strong></li>
-    <li style="color:var(--text-2);font-style:italic">靈感開始於真實，創作屬於你的光芒</li>
+    <li>色票完整對齊 handbook 品牌視覺分頁（補上邊框色、輔助文字、淡化文字等）</li>
+    <li>所有連結改為可點擊（跳轉到對應網站）</li>
+    <li>色塊支援點擊複製色碼</li>
+    <li>新增「使用場景指南」章節</li>
+    <li>新增「應用範例」好壞示範</li>
+    <li>新增「雙品牌系統說明」（ICS + Astra）</li>
+    <li>新增字體載入 code snippet</li>
+    <li>加入頂部固定導覽列</li>
   </ul>
 </div>
 
-<div class="rule-list">
-  <h3>核心 Slogan（品牌氣質）</h3>
-  <ul>
-    <li><strong class="serif" style="font-size:18px">Finding beauty. Making it move.</strong></li>
-  </ul>
-</div>
-
-<div class="rule-list">
-  <h3>一句話定位</h3>
-  <ul>
-    <li>「我們用一雙發現美的眼睛，幫你的品牌找到那個<strong>讓人停下來的瞬間</strong>。」</li>
-  </ul>
-</div>
-
-<div class="rule-list">
-  <h3>ICS 三字訣（服務流程）</h3>
-  <ul>
-    <li><strong class="serif">I</strong> — <strong>Inspire</strong> — IP 定位 · 靈感方向</li>
-    <li><strong class="serif">C</strong> — <strong>Create</strong> — 內容製作 · 有質感執行</li>
-    <li><strong class="serif">S</strong> — <strong>Shine</strong> — 曝光成效 · 讓品牌發光</li>
-  </ul>
-</div>
-
-
-<h2 class="section-title serif">⑥ 版本紀錄</h2>
-<div class="rule-list">
-  <h3>V1.0 · 2026/04</h3>
+<div class="version-log">
+  <h4>V1.0 · 2026/04/23 上午</h4>
   <ul>
     <li>建立初版品牌規範</li>
     <li>確立 Icon 系列（Master / Matrix / Handbook / Scripts）</li>
@@ -440,9 +1175,220 @@ h2.section-title {
 
 <div class="footer">
   <div class="brand">INSPIRE · CREATE · SHINE</div>
-  <div>ICS 品牌視覺規範書 V1.0</div>
-  <div style="margin-top:8px;">Finding beauty. Making it move.</div>
+  <div>ICS 品牌視覺規範書 V3.0</div>
+  <div style="margin-top:8px;"><em>Finding beauty. Making it move.</em></div>
+  <div style="margin-top:16px;font-size:11px;">
+    <a href="https://luckylisaaa.github.io/handbook/" target="_blank">Handbook</a> ·
+    <a href="https://luckylisaaa.github.io/matrix/" target="_blank">Matrix</a> ·
+    <a href="https://luckylisaaa.github.io/script-generator/" target="_blank">Scripts</a>
+  </div>
 </div>
+
+<script>
+function copyColor(color, el) {
+  navigator.clipboard.writeText(color).then(() => {
+    const originalContent = el.querySelector('.click-copy').textContent;
+    el.querySelector('.click-copy').textContent = '✓ 已複製';
+    setTimeout(() => {
+      el.querySelector('.click-copy').textContent = originalContent;
+    }, 1500);
+  }).catch(() => {
+    alert('色碼：' + color);
+  });
+}
+</script>
+
+
+<!-- V3: 錨點滾動追蹤 + 回頂按鈕 -->
+<script>
+(function() {
+  // Back to top
+  var btn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 400) {
+      btn.classList.add('show');
+    } else {
+      btn.classList.remove('show');
+    }
+  });
+  btn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Scroll spy: mark active section in TOC
+  var links = document.querySelectorAll('.toc-fixed a');
+  var sections = [];
+  links.forEach(function(a) {
+    var id = a.getAttribute('href').substring(1);
+    var el = document.getElementById(id);
+    if (el) sections.push({ id: id, el: el, link: a });
+  });
+  
+  function updateActive() {
+    var y = window.scrollY + 150;
+    var current = null;
+    sections.forEach(function(s) {
+      if (s.el.offsetTop <= y) current = s;
+    });
+    links.forEach(function(a) { a.classList.remove('active'); });
+    if (current) current.link.classList.add('active');
+  }
+  window.addEventListener('scroll', updateActive);
+  updateActive();
+})();
+</script>
 
 </body>
 </html>
+
+<!-- ═══ ICS 導覽浮動按鈕 ═══ -->
+<style>
+.ics-nav-widget{position:fixed;bottom:20px;right:20px;z-index:9998;font-family:"Noto Sans TC",-apple-system,sans-serif}
+.ics-nav-trigger{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#B51E28,#7A1018);color:#fff;border:none;font-family:"Noto Serif TC",serif;font-size:22px;font-weight:900;cursor:pointer;box-shadow:0 8px 24px rgba(165,24,32,.35);transition:all .3s;display:flex;align-items:center;justify-content:center}
+.ics-nav-trigger:hover{transform:scale(1.08);box-shadow:0 12px 32px rgba(165,24,32,.45)}
+.ics-nav-trigger.active{transform:rotate(45deg);background:#2A1A1C}
+.ics-nav-menu{position:absolute;bottom:72px;right:0;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;padding:16px;min-width:260px;box-shadow:0 16px 48px rgba(42,26,28,.15);opacity:0;transform:translateY(10px);pointer-events:none;transition:all .3s}
+.ics-nav-menu.open{opacity:1;transform:translateY(0);pointer-events:auto}
+.ics-nav-header{font-family:"Noto Serif TC",serif;color:#A51820;font-weight:900;font-size:14px;letter-spacing:2px;margin-bottom:4px;text-align:center}
+.ics-nav-tagline{color:#7A5A5E;font-size:11px;text-align:center;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #E8E3DA;font-style:italic}
+.ics-nav-list{display:flex;flex-direction:column;gap:4px}
+.ics-nav-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:4px;text-decoration:none;color:#2A1A1C;transition:background .2s;border:1px solid transparent}
+.ics-nav-item:hover{background:#FDF3F4;border-color:#FAE8EA}
+.ics-nav-item.current{background:#FAE8EA;border-color:#A51820;pointer-events:none}
+.ics-nav-icon{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#B51E28,#7A1018);color:#fff;font-family:"Noto Serif TC",serif;font-weight:900;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ics-nav-text{flex:1}
+.ics-nav-name{font-family:"Noto Serif TC",serif;font-weight:700;font-size:14px;color:#2A1A1C}
+.ics-nav-desc{font-size:11px;color:#7A5A5E;margin-top:2px}
+.ics-nav-current-badge{background:#A51820;color:#fff;padding:2px 6px;border-radius:2px;font-size:9px;letter-spacing:1px}
+.ics-nav-footer{text-align:center;margin-top:12px;padding-top:12px;border-top:1px solid #E8E3DA;font-size:10px;color:#B09498;letter-spacing:1px}
+
+/* V3 新增: 右側固定目錄 */
+.toc-fixed {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(253, 251, 248, 0.96);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 180px;
+  box-shadow: 0 8px 24px rgba(42, 26, 28, 0.08);
+  z-index: 9;
+  font-size: 12px;
+}
+@media (max-width: 1180px) { .toc-fixed { display: none; } }
+.toc-fixed .toc-title {
+  font-family: "Noto Serif TC", serif;
+  color: var(--primary);
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+.toc-fixed ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: toc;
+}
+.toc-fixed li {
+  counter-increment: toc;
+  padding: 4px 0;
+}
+.toc-fixed a {
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  transition: all 0.15s;
+  border-bottom: none;
+}
+.toc-fixed a:hover,
+.toc-fixed a.active {
+  color: var(--primary);
+  background: var(--bg-hero);
+}
+.toc-fixed a::before {
+  content: counter(toc, decimal-leading-zero);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--text-3);
+  font-weight: 700;
+}
+.toc-fixed a.active::before { color: var(--primary); }
+
+/* V3 新增: 回頂按鈕 */
+.back-to-top {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  color: var(--primary);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9997;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: all 0.3s;
+}
+.back-to-top.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* V3 新增: 章節結尾「回目錄」連結 */
+.back-to-toc {
+  text-align: right;
+  margin: 16px 0 24px;
+  font-size: 12px;
+}
+.back-to-toc a {
+  color: var(--text-3);
+  border-bottom: 1px dashed var(--text-3);
+  padding: 2px 0;
+}
+.back-to-toc a:hover {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+</style>
+<div class="ics-nav-widget" id="icsNavWidget">
+<div class="ics-nav-menu" id="icsNavMenu">
+<div class="ics-nav-header">ICS 工具系統</div>
+<div class="ics-nav-tagline">Inspire · Create · Shine</div>
+<div class="ics-nav-list">
+<a href="https://luckylisaaa.github.io/" class="ics-nav-item" data-site="root"><div class="ics-nav-icon">ICS</div><div class="ics-nav-text"><div class="ics-nav-name">首頁</div><div class="ics-nav-desc">Home · 總入口</div></div></a>
+<a href="https://luckylisaaa.github.io/handbook/" class="ics-nav-item" data-site="handbook"><div class="ics-nav-icon">H</div><div class="ics-nav-text"><div class="ics-nav-name">Handbook</div><div class="ics-nav-desc">完整學習手冊</div></div></a>
+<a href="https://luckylisaaa.github.io/matrix/" class="ics-nav-item" data-site="matrix"><div class="ics-nav-icon">M</div><div class="ics-nav-text"><div class="ics-nav-name">Matrix</div><div class="ics-nav-desc">選題作戰矩陣</div></div></a>
+<a href="https://luckylisaaa.github.io/script-generator/" class="ics-nav-item" data-site="scripts"><div class="ics-nav-icon">S</div><div class="ics-nav-text"><div class="ics-nav-name">Scripts</div><div class="ics-nav-desc">腳本產生器 V3</div></div></a>
+<a href="https://luckylisaaa.github.io/brand-guidelines/" class="ics-nav-item current" data-site="brand"><div class="ics-nav-icon">B</div><div class="ics-nav-text"><div class="ics-nav-name">Brand</div><div class="ics-nav-desc">品牌視覺規範</div><span class="ics-nav-current-badge">目前</span></div></a>
+</div>
+<div class="ics-nav-footer">Finding beauty. Making it move.</div>
+</div>
+<button class="ics-nav-trigger" id="icsNavTrigger">+</button>
+</div>
+<script>
+(function(){const t=document.getElementById('icsNavTrigger'),m=document.getElementById('icsNavMenu');t.addEventListener('click',e=>{e.stopPropagation();m.classList.toggle('open');t.classList.toggle('active')});document.addEventListener('click',e=>{if(!document.getElementById('icsNavWidget').contains(e.target)){m.classList.remove('open');t.classList.remove('active')}})})();
+</script>
