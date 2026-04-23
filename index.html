@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICS 品牌視覺規範書｜Inspire · Create · Shine</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #A51820;
+  --primary-deep: #7A1018;
+  --primary-bright: #C02030;
+  --bg: #FDFBF8;
+  --bg-card: #F4F1EC;
+  --bg-accent: #FAE8EA;
+  --bg-hero: #FDF3F4;
+  --text: #2A1A1C;
+  --text-2: #7A5A5E;
+  --text-3: #B09498;
+  --line: #E8E3DA;
+  --gold: #D4A574;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Sans TC", -apple-system, sans-serif;
+  line-height: 1.8;
+}
+.serif { font-family: "Noto Serif TC", serif; }
+.mono { font-family: "JetBrains Mono", monospace; font-size: 13px; }
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 48px 28px; }
+
+.hero {
+  text-align: center;
+  padding: 80px 24px;
+  background: linear-gradient(135deg, var(--bg-hero), var(--bg));
+  border-bottom: 1px solid var(--line);
+}
+.hero-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 2px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: "Noto Serif TC", serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+.hero .tagline {
+  font-family: "Noto Serif TC", serif;
+  font-style: italic;
+  color: var(--primary);
+  font-size: 20px;
+  margin-top: 12px;
+}
+.hero .sub { color: var(--text-2); font-size: 16px; max-width: 680px; margin: 16px auto 0; }
+
+h2.section-title {
+  font-family: "Noto Serif TC", serif;
+  font-size: 26px;
+  font-weight: 900;
+  margin: 56px 0 16px;
+  padding-left: 16px;
+  border-left: 4px solid var(--primary);
+}
+.sub-desc { color: var(--text-2); font-size: 14px; margin-bottom: 24px; padding-left: 20px; }
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.swatch {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.swatch .color-block {
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  color: #fff;
+  font-family: "Noto Serif TC", serif;
+  font-weight: 700;
+}
+.swatch .meta {
+  padding: 14px 16px;
+  font-size: 13px;
+}
+.swatch .name {
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.swatch .code { font-family: "JetBrains Mono", monospace; color: var(--primary); font-size: 12px; }
+.swatch .usage { color: var(--text-2); font-size: 12px; margin-top: 6px; line-height: 1.5; }
+
+.font-demo {
+  background: var(--bg-card);
+  padding: 32px 28px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border-left: 4px solid var(--primary);
+}
+.font-demo .label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--primary);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.font-demo .big-sample {
+  font-size: 36px;
+  font-weight: 900;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.font-demo .medium-sample { font-size: 18px; color: var(--text); margin-bottom: 4px; }
+.font-demo .small-sample { font-size: 13px; color: var(--text-2); }
+.font-demo .info { color: var(--text-2); font-size: 12px; margin-top: 12px; }
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+.icon-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 24px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+.icon-card:hover { transform: translateY(-4px); border-color: var(--primary); }
+.icon-card img { width: 100px; height: 100px; border-radius: 22px; box-shadow: 0 8px 20px rgba(165, 24, 32, 0.15); }
+.icon-card .name { font-family: "Noto Serif TC", serif; font-weight: 700; color: var(--text); margin-top: 16px; font-size: 16px; }
+.icon-card .url { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--text-3); margin-top: 6px; }
+
+.rule-list {
+  background: var(--bg-card);
+  padding: 20px 28px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+.rule-list h3 {
+  font-family: "Noto Serif TC", serif;
+  font-size: 17px;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+.rule-list ul { list-style: none; padding: 0; }
+.rule-list li {
+  padding: 4px 0 4px 20px;
+  position: relative;
+  font-size: 14px;
+  color: var(--text);
+}
+.rule-list li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+}
+.rule-list li.bad::before { content: "✗"; color: var(--primary-bright); }
+.rule-list li.good::before { content: "✓"; color: #4A7C59; }
+
+.url-table {
+  background: var(--bg-card);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 1px solid var(--line);
+}
+.url-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.url-table th, .url-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--line); }
+.url-table th { background: var(--primary); color: #fff; font-weight: 700; font-size: 13px; letter-spacing: 1px; }
+.url-table tr:last-child td { border-bottom: none; }
+.url-table code {
+  font-family: "JetBrains Mono", monospace;
+  background: var(--bg);
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-size: 12px;
+  color: var(--primary);
+}
+
+.footer {
+  text-align: center;
+  padding: 64px 24px 32px;
+  color: var(--text-3);
+  font-size: 12px;
+  border-top: 1px solid var(--line);
+  margin-top: 80px;
+}
+.footer .brand {
+  font-family: "Noto Serif TC", serif;
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">BRAND GUIDELINES · V1.0</div>
+  <h1 class="serif">ICS 品牌視覺規範書</h1>
+  <div class="tagline">Inspire. Create. Shine.</div>
+  <div class="sub">給自己、給外包設計師、給合作夥伴。一頁搞定所有視覺規則。<br>只要對外文件涉及 ICS 品牌，都請對齊這份規範。</div>
+</div>
+
+<div class="wrap">
+
+<h2 class="section-title serif">① 品牌色系</h2>
+<p class="sub-desc">主色是深玫瑰紅，視覺主基調。暖白為底，微咖黑為字。紅色只用在最重要的地方，其餘大量留白。</p>
+
+<div class="swatches">
+  <div class="swatch">
+    <div class="color-block" style="background:#A51820">主色 Primary</div>
+    <div class="meta">
+      <div class="name">Deep Rose Red</div>
+      <div class="code mono">#A51820</div>
+      <div class="usage">Logo · 標題 · 主按鈕 · 重點強調</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background:#7A1018">深紅 Deep</div>
+    <div class="meta">
+      <div class="name">Dark Red</div>
+      <div class="code mono">#7A1018</div>
+      <div class="usage">漸層深色 · Hover 狀態</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background:#C02030">亮紅 Bright</div>
+    <div class="meta">
+      <div class="name">Bright Red</div>
+      <div class="code mono">#C02030</div>
+      <div class="usage">CTA · 重點標示</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background:#FDFBF8;color:#2A1A1C;border-top:1px solid var(--line)">暖白底</div>
+    <div class="meta">
+      <div class="name">Warm Snow White</div>
+      <div class="code mono">#FDFBF8</div>
+      <div class="usage">頁面主背景 · 內容頁底色</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background:#FAE8EA;color:#7A1018">粉色重點</div>
+    <div class="meta">
+      <div class="name">Accent Pink</div>
+      <div class="code mono">#FAE8EA</div>
+      <div class="usage">AI 摘要 · 重點標示區</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background:#2A1A1C">微咖黑 Text</div>
+    <div class="meta">
+      <div class="name">Warm Brown Black</div>
+      <div class="code mono">#2A1A1C</div>
+      <div class="usage">所有內文 · 正文 · 說明文字</div>
+    </div>
+  </div>
+</div>
+
+<div class="rule-list">
+  <h3>色彩使用原則</h3>
+  <ul>
+    <li class="good">對外場合（提案、客戶文件、影片字幕）：只用主色系列 + 暖白 + 微咖黑</li>
+    <li class="good">紅色只用在「最重要的一個地方」（CTA、核心標題），其餘大量留白</li>
+    <li class="bad">不要大面積使用亮紅（C02030），會過於刺眼</li>
+    <li class="bad">不要用純黑 #000 代替微咖黑，視覺會突兀</li>
+    <li class="bad">不要在印刷品大面積鋪紅色，改用紅線+文字省墨</li>
+  </ul>
+</div>
+
+
+<h2 class="section-title serif">② 字體系統</h2>
+<p class="sub-desc">標題用襯線體帶質感，內文用黑體確保易讀。兩款字體都是 Google Fonts 免費可商用。</p>
+
+<div class="font-demo" style="font-family:'Noto Serif TC', serif">
+  <div class="label">標題字體 HEADLINE</div>
+  <div class="big-sample">Inspire · Create · Shine</div>
+  <div class="medium-sample">短影音代理營運 · 讓你的品牌被看見</div>
+  <div class="small-sample">用於：品牌名、大標題、引言、裝飾字</div>
+  <div class="info">Noto Serif TC · 權重 500 / 700 / 900</div>
+</div>
+
+<div class="font-demo">
+  <div class="label">內文字體 BODY</div>
+  <div class="big-sample" style="font-weight:900">內文就是這個字體</div>
+  <div class="medium-sample">清楚、易讀、適合大量文字。這段話就是用 Noto Sans TC。</div>
+  <div class="small-sample">用於：正文、說明、按鈕、標籤</div>
+  <div class="info">Noto Sans TC · 權重 400 / 500 / 700 / 900</div>
+</div>
+
+<div class="rule-list">
+  <h3>字體使用原則</h3>
+  <ul>
+    <li class="good">標題用襯線（Serif）帶精品感</li>
+    <li class="good">內文用黑體（Sans）確保手機也好讀</li>
+    <li class="good">英文字也用這兩款，中英混排一致</li>
+    <li class="bad">不要用標楷體、華康系列，缺乏當代感</li>
+    <li class="bad">不要用過多字重（建議只用 400 / 700 / 900 三種）</li>
+  </ul>
+</div>
+
+
+<h2 class="section-title serif">③ Icon 系列</h2>
+<p class="sub-desc">深玫瑰紅底 + 白色襯線字母 + 金線裝飾。主 icon 用 ICS，各工具用首字母延伸。未來新工具照此規則繼續延伸（例：Portal = P，Report = R）。</p>
+
+<div class="icon-grid">
+  <div class="icon-card">
+    <img src="icon-ics-master-512.png" alt="ICS Master">
+    <div class="name">主 Logo</div>
+    <div class="url mono">品牌主視覺</div>
+  </div>
+  <div class="icon-card">
+    <img src="icon-matrix-512.png" alt="Matrix">
+    <div class="name">Matrix 選題矩陣</div>
+    <div class="url mono">/matrix/</div>
+  </div>
+  <div class="icon-card">
+    <img src="icon-handbook-512.png" alt="Handbook">
+    <div class="name">Handbook 學習手冊</div>
+    <div class="url mono">/handbook/</div>
+  </div>
+  <div class="icon-card">
+    <img src="icon-scripts-512.png" alt="Scripts">
+    <div class="name">Scripts 腳本產生器</div>
+    <div class="url mono">/script-generator/</div>
+  </div>
+</div>
+
+<div class="rule-list" style="margin-top: 20px;">
+  <h3>Icon 使用原則</h3>
+  <ul>
+    <li class="good">底色一律深玫瑰紅漸層（#B51E28 → #7A1018）</li>
+    <li class="good">字母用 Noto Serif TC 襯線體，白色 #FDFBF8</li>
+    <li class="good">加一條金線裝飾（#D4A574）增加質感</li>
+    <li class="good">圓角統一 22% 比例（112 / 512）</li>
+    <li class="bad">不要把底色換成其他顏色</li>
+    <li class="bad">不要加卡通插圖、emoji、過多裝飾</li>
+  </ul>
+</div>
+
+
+<h2 class="section-title serif">④ 網站資產</h2>
+<p class="sub-desc">所有 ICS 旗下數位資產，使用同一套視覺規範。</p>
+
+<div class="url-table">
+  <table>
+    <tr>
+      <th>資產</th>
+      <th>網址</th>
+      <th>用途</th>
+    </tr>
+    <tr>
+      <td><strong class="serif">Handbook</strong></td>
+      <td><code>luckylisaaa.github.io/handbook/</code></td>
+      <td>代理營運學習手冊</td>
+    </tr>
+    <tr>
+      <td><strong class="serif">Matrix</strong></td>
+      <td><code>luckylisaaa.github.io/matrix/</code></td>
+      <td>選題作戰矩陣</td>
+    </tr>
+    <tr>
+      <td><strong class="serif">Scripts</strong></td>
+      <td><code>luckylisaaa.github.io/script-generator/</code></td>
+      <td>腳本產生器</td>
+    </tr>
+  </table>
+</div>
+
+
+<h2 class="section-title serif">⑤ 標語系統</h2>
+
+<div class="rule-list">
+  <h3>主標語（對外用）</h3>
+  <ul>
+    <li><strong class="serif" style="font-size:18px">Inspire. Create. Shine.</strong></li>
+    <li style="color:var(--text-2);font-style:italic">靈感開始於真實，創作屬於你的光芒</li>
+  </ul>
+</div>
+
+<div class="rule-list">
+  <h3>核心 Slogan（品牌氣質）</h3>
+  <ul>
+    <li><strong class="serif" style="font-size:18px">Finding beauty. Making it move.</strong></li>
+  </ul>
+</div>
+
+<div class="rule-list">
+  <h3>一句話定位</h3>
+  <ul>
+    <li>「我們用一雙發現美的眼睛，幫你的品牌找到那個<strong>讓人停下來的瞬間</strong>。」</li>
+  </ul>
+</div>
+
+<div class="rule-list">
+  <h3>ICS 三字訣（服務流程）</h3>
+  <ul>
+    <li><strong class="serif">I</strong> — <strong>Inspire</strong> — IP 定位 · 靈感方向</li>
+    <li><strong class="serif">C</strong> — <strong>Create</strong> — 內容製作 · 有質感執行</li>
+    <li><strong class="serif">S</strong> — <strong>Shine</strong> — 曝光成效 · 讓品牌發光</li>
+  </ul>
+</div>
+
+
+<h2 class="section-title serif">⑥ 版本紀錄</h2>
+<div class="rule-list">
+  <h3>V1.0 · 2026/04</h3>
+  <ul>
+    <li>建立初版品牌規範</li>
+    <li>確立 Icon 系列（Master / Matrix / Handbook / Scripts）</li>
+    <li>Matrix 升級為 PWA（可安裝為手機 App）</li>
+  </ul>
+</div>
+
+</div>
+
+<div class="footer">
+  <div class="brand">INSPIRE · CREATE · SHINE</div>
+  <div>ICS 品牌視覺規範書 V1.0</div>
+  <div style="margin-top:8px;">Finding beauty. Making it move.</div>
+</div>
+
+</body>
+</html>
